@@ -33,7 +33,7 @@ async function captureReport(testId, group) {
   await page.click(confirmationSelector);
 
   // Run lighthouse tests
-  const flow = await startFlow(page, { name: 'Engelhorn comparisson' });
+  const flow = await startFlow(page, { name: 'Decathlon comparisson' });
   await navigate(flow, cat, 'category page');
   await navigate(flow, plp, 'sales page');
   await navigate(flow, pdp, 'product page');
