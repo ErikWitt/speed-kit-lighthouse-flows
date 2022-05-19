@@ -23,7 +23,7 @@ async function captureReport(testId, group) {
   await page.setCookie({
     name: 'baqend-speedkit-ab-test-info',
     value: `%7B%22group%22%3A%22${group}%22%2C%22testId%22%3A%22${testId}%22%7D`,
-    domain: 'www.decathlon.de'
+    domain: 'www.swarovski.com'
   });
   // Go to start page and accept cookies
   await page.goto(start, {waitUntil: 'load'});
