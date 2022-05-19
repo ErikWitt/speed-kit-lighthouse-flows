@@ -3,10 +3,9 @@ import open from 'open';
 import puppeteer from 'puppeteer';
 import {startFlow} from 'lighthouse/lighthouse-core/fraggle-rock/api.js';
 
-const start = 'https://www.decathlon.de/'
-const cat = 'https://www.decathlon.de/browse/c0-damen/c1-bademode/c2-neoprenbekleidung/_/N-6t5h92';
-const pdp = 'https://www.decathlon.de/p/trekkingshorts-trek-500-damen/_/R-p-306980?mc=8544767&c=GR%C3%9CN_KHAKI';
-const plp = 'https://www.decathlon.de/special-page/_/N-x6qfruZzB50HB';
+const start = 'https://www.swarovski.com/en_GB-GB/'
+const plp = 'https://www.swarovski.com/en_GB-GB/c-swa-root/Categories/f/flags/fl-newin/';
+const pdp = 'https://www.swarovski.com/en_GB-GB/p-M5619472/Millenia-drop-earrings-Square-cut-Blue-Rhodium-plated/?variantID=5619472';
 
 async function captureReport(testId, group) {
   const browser = await puppeteer.launch({
@@ -28,14 +27,13 @@ async function captureReport(testId, group) {
   });
   // Go to start page and accept cookies
   await page.goto(start, {waitUntil: 'load'});
-  const confirmationSelector = '#didomi-notice-agree-button';
-  await page.waitForSelector(confirmationSelector);
-  await page.click(confirmationSelector);
+  //const confirmationSelector = '#didomi-notice-agree-button';
+  //await page.waitForSelector(confirmationSelector);
+  //await page.click(confirmationSelector);
 
   // Run lighthouse tests
   const flow = await startFlow(page, { name: 'Decathlon comparisson' });
-  await navigate(flow, cat, 'category page');
-  await navigate(flow, plp, 'sales page');
+  await navigate(flow, plp, 'category page');
   await navigate(flow, pdp, 'product page');
 
   // Generate reports
