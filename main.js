@@ -3,10 +3,10 @@ import open from 'open';
 import puppeteer from 'puppeteer';
 import {startFlow} from 'lighthouse/lighthouse-core/fraggle-rock/api.js';
 
-const start = 'https://www.engelhorn.de/'
-const home = 'https://www.engelhorn.de/de-de/damen/';
-const pdp = 'https://www.engelhorn.de/de-de/weekend-max-mara-damen-minirock-ricamo-braun-V1077884F.html';
-const plp = 'https://www.engelhorn.de/de-de/damen/bekleidung/roecke/';
+const start = 'https://bettybarclay.com/'
+const home = 'https://bettybarclay.com/de/';
+const pdp = 'https://bettybarclay.com/de/p/cartoon-strickpullover-53507072/';
+const plp = 'https://bettybarclay.com/de/bekleidung/strickmode-sweat/';
 
 async function captureReport(activateSpeedKit) {
   const browser = await puppeteer.launch({
@@ -26,12 +26,12 @@ async function captureReport(activateSpeedKit) {
   const startUrl = new URL(start);
   startUrl.searchParams.append(activateSpeedKit ? 'enableSpeedKit' : 'disableSpeedKit', '1')
   await page.goto(startUrl.toString(), {waitUntil: 'load'});
-  const confirmationSelector = '#cmpbntyestxt';
+  const confirmationSelector = '#CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll';
   await page.waitForSelector(confirmationSelector);
   await page.click(confirmationSelector);
 
   // Run lighthouse tests
-  const flow = await startFlow(page, { name: 'Comparisson' });
+  const flow = await startFlow(page, { name: 'Engelhorn comparisson' });
   await navigate(flow, home, 'home page');
   await navigate(flow, plp, 'listing page');
   await navigate(flow, pdp, 'product page');
